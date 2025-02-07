@@ -1,11 +1,7 @@
 package main
 
-import "context"
-
 func main(){
-	store := NewStore()
+	grpcServer := NewRPCServer(":2000")
 
-	svc := NewService(store)
-
-	svc.CreateOrder(context.Background())
+	grpcServer.Run()
 }

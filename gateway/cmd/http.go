@@ -35,7 +35,7 @@ func (h *Http) mount() *fiber.App {
 	// Routes
 	api := r.Group("/api")
 
-	api.Get("/customers/:customerId/orders", h.createOrderHandler)
+	api.Post("/customers/:customerId/orders", h.createOrderHandler)
 
 	return r
 }
