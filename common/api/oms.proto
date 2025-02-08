@@ -22,12 +22,7 @@ message Item {
   string PriceID = 4;
 }
 
-message ItemWithQuantity {
-  string ID = 1;
-  int32  Quantity = 2;
-}
-
 message CreateOrderRequest {
   string CustomerID = 1;
-  repeated ItemWithQuantity Items = 2;
+  repeated Item Items = 2;
 }

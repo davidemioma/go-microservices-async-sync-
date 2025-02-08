@@ -1,17 +1,21 @@
 package main
 
-import "context"
+import (
+	"common/api"
+	"context"
+)
+
+var ordersDb []*api.Order
 
 type Services struct {
-	store OrderStore
 }
 
-func NewService(store OrderStore) *Services{
-	return &Services{
-		store,
-	}
+func NewService() *Services{
+	return &Services{}
 }
 
-func (s *Services) CreateOrder (context.Context) error {
+func (s *Services) CreateOrder (ctx context.Context, order *api.Order) error {
+	ordersDb = append(ordersDb, order)
+
 	return nil
 }

@@ -12,7 +12,9 @@ func main() {
 	godotenv.Load(".env")
 
 	// Create Grpc Connection
-	conn := GetGrpcConn("localhost:5000")
+	conn := GetGrpcConn(":2000")
+
+	defer conn.Close()
 
 	// Add client to GRPC server
 	c := api.NewOrderServiceClient(conn)

@@ -12,7 +12,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func validateItems(items []*api.ItemWithQuantity) error {
+func validateItems(items []*api.Item) error {
 	if len(items) == 0 {
 		return errors.New("you must have at least one item")
 	}
@@ -42,7 +42,7 @@ func (app *Http) createOrderHandler(c *fiber.Ctx) error {
 	}
 
 	// Get and validate items from req body
-	var items []*api.ItemWithQuantity
+	var items []*api.Item
 
 	err := c.BodyParser(&items)
 

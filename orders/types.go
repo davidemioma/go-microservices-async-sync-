@@ -1,11 +1,10 @@
 package main
 
-import "context"
+import (
+	"common/api"
+	"context"
+)
 
 type OrderService interface {
-	CreateOrder(context.Context) error
-}
-
-type OrderStore interface {
-	Create(context.Context) error
+	CreateOrder(context.Context, *api.Order) error
 }
