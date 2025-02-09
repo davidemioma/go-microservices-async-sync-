@@ -1,6 +1,7 @@
 package main
 
 import (
+	"common"
 	"common/api"
 	"context"
 
@@ -34,6 +35,25 @@ func (h *grpcHandler) CreateOrder(ctx context.Context, req *api.CreateOrderReque
 	if err != nil {
 		return nil, err
 	}
+
+	var formmatedItems []common.ItemType
+
+	for _, item := range req.Items {
+		formmatedItems = append(formmatedItems, common.ItemType{
+			ID: item.ID,
+			Name: item.Name,
+			Quantity: item.Quantity,
+			PriceID: item.PriceID,
+		})
+	}
+
+	// Publish order message for rabbitMq
+	publishOrderMessage(ctx, common.OrderType{
+		ID: "1234",
+		CustomerID: req.CustomerID,
+		Items: formmatedItems,
+		Status: "snsmxmx",
+	})
 
 	return order, nil
 }

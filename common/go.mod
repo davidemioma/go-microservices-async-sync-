@@ -3,6 +3,7 @@ module common
 go 1.23.3
 
 require (
+	github.com/rabbitmq/amqp091-go v1.10.0
 	google.golang.org/grpc v1.70.0
 	google.golang.org/protobuf v1.35.2
 )
